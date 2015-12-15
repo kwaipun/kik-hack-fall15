@@ -1,0 +1,27 @@
+{
+  "name": "kik-hack-fall15",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.10.35",
+    "npm": "2.5.0"
+  },
+  "dependencies": {
+    "kik-lib": "1.0.0",
+    "zerver": "^0.17.6"
+  },
+  "devDependencies": {
+    "jshint": "2.6.0",
+    "colors": "0.6.x",
+    "express": "4.13.3",
+    "mocha": "1.18.x",
+    "q": "^1.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kwaipun/kik-hack-fall15.git"
+  },
+  "scripts": {
+    "start": "zerver web",
+    "lint": "jshint web/zerver"
+  }
+}
