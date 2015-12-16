@@ -1,4 +1,5 @@
-App.controller('map-page', function (page) {    
+App.controller('map-page', function (page) {
+    
     function createMap(position) {
         var mapCanvas = document.querySelector('.app-section.map-container'),
             LatLng = {lat: position.coords.latitude, lng: position.coords.longitude},
@@ -6,14 +7,28 @@ App.controller('map-page', function (page) {
                 center: LatLng,
                 zoom: 14,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-            }
+                draggable: false,
+            };
             map = new google.maps.Map(mapCanvas, mapOptions);
             marker = new google.maps.Marker({
                 position: LatLng,
                 map: map,
-                // draggable: true,
-            })
+            });
         
+        var $accuracy = document.querySelector('.accuracy-text');
+        $accuracy.innerHTML = 'Accurate to ' + position.coords.accuracy + 'm';
+        
+        var $sendBtn = document.querySelector('.app-button.send');
+        Clickable($sendBtn);
+        $sendBtn.addEventListener('click', function () {
+            sendMap();
+        }, true);
+        
+        function sendMap() {
+            console.log('test');
+            console.log(LatLng); 		
+
+        }
     }
     //TODO
     // take in location param otherwise, fetch location
@@ -23,15 +38,6 @@ App.controller('map-page', function (page) {
         } else {
             console.error('Geolocation is not supported');
         }
-    }
-  
-    function showPosition(position) {
-        console.log(position.coords);
-        var pos = position.coords.latitude + "," + position.coords.longitude,
-            $map = document.querySelector('.app-section.map-container'),
-            img_url = "http://maps.googleapis.com/maps/api/staticmap?center="+pos+"&zoom=14&size=500x500&sensor=false";
-      
-        $map.innerHTML = "<img src='" + img_url + "'>";
     }
   
     function showError(error) {
@@ -52,7 +58,7 @@ App.controller('map-page', function (page) {
         }
   
     getLocation();
-  
+
 });
 
 App.controller('send', function (page) {

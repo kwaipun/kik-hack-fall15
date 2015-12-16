@@ -1,4 +1,37 @@
 .app-section.map-container {
-    height: 500px;
-    width: 500px;
+    height: 300px;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    background: url(../img/background.png);
+    background-size: contain;
+}
+
+.app-section.accuracy-container {
+    width: 80%;
+    margin:auto;
+    margin-top: 10px;
+    height: 15px;
+}
+
+.app-section.accuracy-container .location-icon {
+    background: url(../img/marker.png);
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    height: 15px;
+    width: 15px;
+    margin-left: 10px;
+    float: left;
+}
+
+.app-section.accuracy-container .accuracy-text {
+    position: relative;
+    bottom: 9px;
+    left: 5px;
+    
+}
+
+.app-button.send {
+    margin:auto;
+    width: 80%;
 }
