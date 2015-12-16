@@ -15,8 +15,10 @@ App.controller('map-page', function (page) {
                 map: map,
             });
         
-        var $accuracy = document.querySelector('.accuracy-text');
-        $accuracy.innerHTML = 'Accurate to ' + position.coords.accuracy + 'm';
+        var $accuracy = document.querySelector('.accuracy-text'),
+            accuracyText = String(position.coords.accuracy);
+        
+        $accuracy.innerHTML = 'Accurate to ' + accuracyText.substring(0,2) + 'm';
         
         var $sendBtn = document.querySelector('.app-button.send');
         Clickable($sendBtn);
@@ -25,14 +27,26 @@ App.controller('map-page', function (page) {
         }, true);
         
         function sendMap() {
-            console.log('test');
-            console.log(LatLng); 		
-
+            if (kik.enabled) {
+                if (kik.send) {
+                    kik.send({
+                        title: "Location",
+                        noForward: true,
+                        data: { 
+                            chat_widget: true,
+                            size: {"width": 300, "height": 300},
+                            location: position,
+                        },
+                    });
+                }
+            }
         }
     }
-    //TODO
-    // take in location param otherwise, fetch location
+
     function getLocation() {
+        if (kik.message){
+            createMap(kik.message.location);
+        }
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(createMap,showError);
         } else {
@@ -41,6 +55,7 @@ App.controller('map-page', function (page) {
     }
   
     function showError(error) {
+        var x = document.querySelector('.accuracy-text');
         switch(error.code) {
             case error.PERMISSION_DENIED:
                 x.innerHTML = "User denied the request for Geolocation."
@@ -56,13 +71,17 @@ App.controller('map-page', function (page) {
                 break;
             }
         }
+    // for sending worse maps
+    function showPosition(position) {
+        console.log(position.coords);
+        var pos = position.coords.latitude + "," + position.coords.longitude,
+        $map = document.querySelector('.app-section.map-container'),
+        img_url = "http://maps.googleapis.com/maps/api/staticmap?center="+pos+"&zoom=14&size=500x500&sensor=false";
+        $map.innerHTML = "<img src='" + img_url + "'>";
+    }
   
     getLocation();
 
-});
-
-App.controller('send', function (page) {
-  // put stuff here
 });
 
 try {
