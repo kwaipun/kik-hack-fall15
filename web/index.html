@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Send Location</title>
+    <title>Location</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="icon" type="image/png" href="http://i.imgur.com/quEdzNZ.png">
     <link rel="stylesheet" href="./css/app.min.css">
     <link rel="stylesheet" href="./css/map.css">
   </head>
 
   <body>
     <div class="app-page" data-page="map-page">
-      <div class="app-topbar">
+      <!-- <div class="app-topbar">
         <div class="app-title">Send Location</div>
-      </div>
+      </div> -->
       <div class="app-content">
         <div class="app-section map-container"></div>
         <div class="app-section accuracy-container">
@@ -22,6 +23,10 @@
           <div class="app-button send">Send</div>
         </div>
       </div>
+    </div>
+    
+    <div class="app-page" data-page="display-page">
+        <div class="app-section map-container"></div>
     </div>
 
     <script src="./lib/zepto.js"></script>
