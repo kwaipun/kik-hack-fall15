@@ -8,6 +8,7 @@ App.controller('map-page', function (page) {
                 zoom: 14,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 draggable: true,
+                disableDefaultUI: true,
             };
             map = new google.maps.Map(mapCanvas, mapOptions);
             marker = new google.maps.Marker({
